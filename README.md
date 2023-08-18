@@ -17,7 +17,7 @@ Requires the dependencies in the package.json.
 
 ## Usage
 [Github Repo](https://github.com/Jako0320/NoteTaker_JS)
-
+[Heroku live link](https://notetaker-js11-c182c7f1d7a3.herokuapp.com/)
 ## License
   
 This application is not covered under any license. 
