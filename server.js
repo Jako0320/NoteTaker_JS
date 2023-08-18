@@ -52,6 +52,25 @@ app.post("/api/notes", (req, res) => {
   res.json(newNote);
 });
 
+// Delete a saved note
+app.delete("/api/notes/:id", (req, res) => {
+  const noteId = req.params.id;
+  const existingNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  const noteIndex = existingNotes.findIndex((note) => note.id === noteId);
+
+  if (noteIndex !== -1) {
+    existingNotes.splice(noteIndex, 1);
+    fs.writeFileSync(
+      "./db/db.json",
+      JSON.stringify(existingNotes, null, 2),
+      "utf8"
+    );
+    res.status(200).json({ message: "Note deleted successfully" });
+  } else {
+    res.status(404).json({ error: "Note not found" });
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
